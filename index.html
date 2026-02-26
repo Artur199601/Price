@@ -8,19 +8,31 @@
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--tg-theme-bg-color, #ffffff);
+            background-color: var(--tg-theme-secondary-bg-color, #f4f4f5); 
             color: var(--tg-theme-text-color, #000000);
             margin: 0;
-            padding: 20px;
+            padding: 15px;
         }
         .header {
             text-align: center;
             margin-bottom: 25px;
+            margin-top: 10px;
+        }
+        /* СТИЛЬ ДЛЯ ЛОГОТИПА */
+        .logo {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%; /* Делает круглым */
+            object-fit: cover;
+            border: 3px solid #d4af37; /* Золотая рамка */
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); /* Легкая тень */
+            margin-bottom: 15px;
         }
         .header h1 {
-            font-size: 24px;
+            font-size: 26px;
             margin: 0;
             color: #d4af37;
+            text-shadow: 0px 1px 2px rgba(0,0,0,0.1);
         }
         .header p {
             font-size: 14px;
@@ -29,60 +41,70 @@
         }
         .category {
             font-size: 18px;
-            font-weight: bold;
-            margin-top: 20px;
-            margin-bottom: 10px;
-            border-bottom: 2px solid #f0f0f0;
-            padding-bottom: 5px;
+            font-weight: 800;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            padding-left: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        .item {
+        /* СТИЛЬ ДЛЯ КАРТОЧЕК */
+        .item-card {
+            background-color: var(--tg-theme-bg-color, #ffffff);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid #fafafa;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* Тень карточки */
+            border: 1px solid rgba(0,0,0,0.03);
         }
         .item-name {
             font-size: 16px;
-            font-weight: 500;
+            font-weight: 600;
+            margin-bottom: 4px;
         }
         .item-desc {
-            font-size: 12px;
+            font-size: 13px;
             color: var(--tg-theme-hint-color, #888888);
-            margin-top: 3px;
         }
         .item-price {
-            font-size: 16px;
-            font-weight: bold;
+            font-size: 18px;
+            font-weight: 800;
             color: #d4af37;
+            white-space: nowrap;
+            padding-left: 10px;
         }
         .footer {
             text-align: center;
-            margin-top: 30px;
-            font-size: 12px;
+            margin-top: 35px;
+            font-size: 13px;
             color: var(--tg-theme-hint-color, #888888);
-            padding-bottom: 20px;
+            padding-bottom: 30px;
         }
     </style>
 </head>
 <body>
 
     <div class="header">
+        <img src="IMG_0797.jpeg" alt="Logo" class="logo">
+        
         <h1>✨ FILLER'S BEAUTY</h1>
         <p>Прямые поставки из Южной Кореи</p>
     </div>
 
     <div class="category">💉 Филлеры</div>
     
-    <div class="item">
+    <div class="item-card">
         <div>
-            <div class="item-name">Sardenya (Deep / Shape / Fine)</div>
+            <div class="item-name">Sardenya (Deep/Shape/Fine)</div>
             <div class="item-desc">С лидокаином, 1.1 мл</div>
         </div>
         <div class="item-price">от 22$</div>
     </div>
 
-    <div class="item">
+    <div class="item-card">
         <div>
             <div class="item-name">Neuramis Deep</div>
             <div class="item-desc">С лидокаином, 1.0 мл</div>
@@ -92,17 +114,17 @@
 
     <div class="category">🔥 Токсины</div>
 
-    <div class="item">
+    <div class="item-card">
         <div>
             <div class="item-name">Botulax 100U / 200U</div>
             <div class="item-desc">Оригинал, Корея</div>
         </div>
-        <div class="item-price">По запросу</div>
+        <div class="item-price">Запрос</div>
     </div>
 
     <div class="category">🧪 Липолитики</div>
 
-    <div class="item">
+    <div class="item-card">
         <div>
             <div class="item-name">Lipo Lab V-Line</div>
             <div class="item-desc">Упаковка 10 флаконов</div>
@@ -118,8 +140,13 @@
     <script>
         window.Telegram.WebApp.ready();
         window.Telegram.WebApp.expand(); 
+        
+        // Красим кнопку в золотой цвет
         window.Telegram.WebApp.MainButton.text = "ЗАКРЫТЬ И ПОЛУЧИТЬ ПОЛНЫЙ ПРАЙС";
+        window.Telegram.WebApp.MainButton.color = "#d4af37"; 
+        window.Telegram.WebApp.MainButton.textColor = "#ffffff"; 
         window.Telegram.WebApp.MainButton.show();
+        
         window.Telegram.WebApp.MainButton.onClick(function() {
             window.Telegram.WebApp.close();
         });
